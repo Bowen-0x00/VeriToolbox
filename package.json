@@ -1,0 +1,94 @@
+{
+  "name": "VeriToolbox",
+  "displayName": "VeriToolbox",
+  "description": "Format Verilog/SystemVerilog using Verible, with easy module instantiation and testbench generation.",
+  "version": "0.0.1",
+  "repository": {
+		"type": "git",
+		"url": "https://github.com/Microsoft/vscode-extension-samples"
+	},
+  "engines": {
+    "vscode": "^1.94.0"
+  },
+  "categories": [
+    "Formatters",
+    "Snippets",
+    "Language Packs"
+  ],
+  "activationEvents": [],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "configuration": {
+      "title": "VeriToolbox",
+      "properties": {
+        "VeriToolbox.veribleSyntaxPath": {
+          "type": "string",
+          "default": "verible-verilog-syntax",
+          "description": "Path to the verible-verilog-syntax executable."
+        },
+        "VeriToolbox.veribleFormatPath": {
+          "type": "string",
+          "default": "verible-verilog-format",
+          "description": "Path to the verible-verilog-format executable."
+        },
+        "VeriToolbox.syntaxArgs": {
+          "type": "string",
+          "default": "",
+          "description": "Additional arguments for verible-verilog-syntax."
+        },
+        "VeriToolbox.formatArgs": {
+          "type": "string",
+          "default": "--indentation_spaces=4",
+          "description": "Additional arguments for verible-verilog-format."
+        }
+      }
+    },
+    "commands": [
+      {
+        "command": "VeriToolbox.generateInstanceToClipboard",
+        "title": "Generate Instance to Clipboard"
+      },
+      {
+        "command": "VeriToolbox.insertInstanceFromFile",
+        "title": "Insert Instance From File"
+      },
+      {
+        "command": "VeriToolbox.generateTestbenchToClipboard",
+        "title": "Generate Testbench to Clipboard"
+      },
+      {
+        "command": "VeriToolbox.insertTestbenchFromFile",
+        "title": "Insert Testbench From File"
+      },
+      {
+        "command": "VeriToolbox.formatSelection",
+        "title": "Format Selection"
+      }
+    ]
+  },
+  "scripts": {
+    "vscode:prepublish": "npm run package",
+    "compile": "webpack",
+    "watch": "webpack --watch",
+    "package": "webpack --mode production --devtool hidden-source-map",
+    "compile-tests": "tsc -p . --outDir out",
+    "watch-tests": "tsc -p . -w --outDir out",
+    "pretest": "npm run compile-tests && npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test": "vscode-test"
+  },
+  "devDependencies": {
+    "@types/vscode": "^1.94.0",
+    "@types/mocha": "^10.0.6",
+    "@types/node": "18.x",
+    "@typescript-eslint/eslint-plugin": "^7.7.1",
+    "@typescript-eslint/parser": "^7.7.1",
+    "eslint": "^8.57.0",
+    "typescript": "^5.4.5",
+    "ts-loader": "^9.5.1",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4",
+    "@vscode/test-cli": "^0.0.9",
+    "@vscode/test-electron": "^2.3.9"
+  }
+}
