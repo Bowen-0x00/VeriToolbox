@@ -3,9 +3,10 @@
   "displayName": "VeriToolbox",
   "description": "Format Verilog/SystemVerilog using Verible, with easy module instantiation and testbench generation.",
   "version": "0.0.1",
+  "publisher": "ymjr",
   "repository": {
 		"type": "git",
-		"url": "https://github.com/Microsoft/vscode-extension-samples"
+		"url": "https://github.com/Bowen-0x00/VeriToolbox"
 	},
   "engines": {
     "vscode": "^1.94.0"
