@@ -2,7 +2,7 @@
   "name": "VeriToolbox",
   "displayName": "VeriToolbox",
   "description": "Format Verilog/SystemVerilog using Verible, with easy module instantiation and testbench generation.",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "publisher": "ymjr",
   "repository": {
 		"type": "git",
