@@ -161,9 +161,10 @@ function run_cmd(config: vscode.WorkspaceConfiguration, mode: string, filePath: 
         }
     });
 }
+
 function dirToType(ports: PortInfo[]) {
     let result = '';
-    for (const p of ports) {
+    ports.forEach((p, index) => {
         let line = '';
         const noStore = p.preString.replaceAll('wire', '');
         if (p.hasType) {
@@ -172,10 +173,16 @@ function dirToType(ports: PortInfo[]) {
             line += `${noStore.replaceAll('input', 'reg').replaceAll('output', 'wire').replaceAll('inout', 'reg')}`;
         }
         line += ` ${p.identifier};`;
-        result += `${line.trim()}\n\t`
-    }
+        result += line.trim();
+        
+        // Only add newline and tab if it's not the last element
+        if (index !== ports.length - 1) {
+            result += '\n\t';
+        }
+    });
     return result;
 }
+
 
 export function activate(context: vscode.ExtensionContext) {
     const config = vscode.workspace.getConfiguration('VeriToolbox');
@@ -256,7 +263,7 @@ ${info.result}
         $finish;
     end
 endmodule
-`;
+`.replaceAll('\t', '    ');
             vscode.env.clipboard.writeText(result).then(() => {
                 vscode.window.showInformationMessage('Instance copied to clipboard');
             });
