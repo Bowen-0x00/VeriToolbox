@@ -79,7 +79,7 @@ function generate_instance(origin_string: string, token_obj: any, passingOn: boo
 					ports.push(port);
 					hasTypeRef.hasType = false;
 				}
-			} else {
+			} else if(path.includes('kDataTypePrimitive')) {
 				hasTypeRef.hasType = true;
 			}
         }
@@ -165,10 +165,11 @@ function dirToType(ports: PortInfo[]) {
 	let result = '';
 	for (const p of ports) {
 		let line = '';
+		const noStore = p.preString.replaceAll('wire', '');
 		if (p.hasType) {
-			line += `${p.preString.replaceAll('input', '').replaceAll('output', '').replaceAll('inout', '')}`;
+			line += `${noStore.replaceAll('input', '').replaceAll('output', '').replaceAll('inout', '')}`;
 		} else {
-			line += `${p.preString.replaceAll('input', 'reg').replaceAll('output', 'wire').replaceAll('inout', 'reg')}`;
+			line += `${noStore.replaceAll('input', 'reg').replaceAll('output', 'wire').replaceAll('inout', 'reg')}`;
 		}
 		line += ` ${p.identifier};`;
 		result += `${line.trim()}\n\t`
